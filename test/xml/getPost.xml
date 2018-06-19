@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<methodCall>
+    <methodName>metaWeblog.getPost</methodName>
+    <params>
+        <param>
+            <value>
+                <string>2018/06/sss.html</string>
+            </value>
+        </param>
+        <param>
+            <value>
+                <string>rox</string>
+            </value>
+        </param>
+        <param>
+            <value>
+                <string>123456</string>
+            </value>
+        </param>
+    </params>
+</methodCall>

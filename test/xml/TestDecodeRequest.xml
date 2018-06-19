@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<methodCall>
+    <methodName>GetBlogList</methodName>
+    <params>
+        <param>
+            <value>
+                <struct>
+                    <member>
+                        <name>BlogId</name>
+                        <value>
+                            <string>blog-001</string>
+                        </value>
+                    </member>
+                    <member>
+                        <name>URL</name>
+                        <value>
+                            <string>http://localhost:8080</string>
+                        </value>
+                    </member>
+                    <member>
+                        <name>BlogName</name>
+                        <value>
+                            <string>Test Blog</string>
+                        </value>
+                    </member>
+                </struct>
+            </value>
+        </param>
+    </params>
+</methodCall>

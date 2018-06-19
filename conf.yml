@@ -1,0 +1,7 @@
+server:
+  port: 12345
+
+gitpage:
+  name: Rox的随笔
+  url: https://roxliu.github.io
+  root: E:/rox/roxliu.github.io

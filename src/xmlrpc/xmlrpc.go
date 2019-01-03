@@ -367,6 +367,9 @@ func next(p *xml.Decoder) (xml.Name, interface{}, error) {
 		if e = p.DecodeElement(&s, &se); e != nil {
 			return xml.Name{}, nil, e
 		}
+		if strings.HasSuffix(s, "Z") {
+			s = strings.TrimSuffix(s, "Z")
+		}
 		t, e := time.Parse("20060102T15:04:05", s)
 		if e != nil {
 			t, e = time.Parse("2006-01-02T15:04:05-07:00", s)
@@ -435,11 +438,11 @@ func next(p *xml.Decoder) (xml.Name, interface{}, error) {
 	case "array":
 		var ar Array
 		startElement(p) // data
-		se, e = startElementInTag(p, "array") // top of value
-		if se.Name.Local != "value" {
-			return xml.Name{}, ar, nil
-		}
 		for {
+			se, e = startElementInTag(p, "array") // top of value
+			if se.Name.Local != "value" {
+				return xml.Name{}, ar, nil
+			}
 			_, value, e := next(p)
 			if e != nil {
 				break

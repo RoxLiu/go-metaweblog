@@ -367,12 +367,10 @@ func next(p *xml.Decoder) (xml.Name, interface{}, error) {
 		if e = p.DecodeElement(&s, &se); e != nil {
 			return xml.Name{}, nil, e
 		}
-		if strings.HasSuffix(s, "Z") {
-			s = strings.TrimSuffix(s, "Z")
-		}
+
 		t, e := time.Parse("20060102T15:04:05", s)
 		if e != nil {
-			t, e = time.Parse("2006-01-02T15:04:05-07:00", s)
+			t, e = time.Parse("20060102T15:04:05Z07:00", s)
 			if e != nil {
 				t, e = time.Parse("2006-01-02T15:04:05", s)
 			}

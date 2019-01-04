@@ -5,6 +5,7 @@ import (
 	"../../src/xmlrpc"
 	"bufio"
 	"os"
+	"time"
 )
 
 type BlogInfo struct {
@@ -67,20 +68,42 @@ func TestNewPost(t *testing.T)  {
 	}
 
 	blogId := rsp.GetParameter(0).(string)
+	t.Log(blogId)
 	//username := r.GetParameter(1)
 	//password := r.GetParameter(2)
 	post := rsp.GetParameter(3).(xmlrpc.Struct)
 
 	title := post["title"].(string)
+	t.Log(title)
 	content := post["description"].(string)
+	t.Log(content)
 
 	publish := rsp.GetParameter(4).(bool)
-	t.Log(blogId)
-	t.Log(title)
-	t.Log(content)
 	t.Log(publish)
+
+	dateCreated := post["dateCreated"].(time.Time)
+	t.Log(dateCreated)
+
+	t.Log(time.Now().UTC().Format("2006-01-02T15:04:05Z07:00"))
 }
 
+func TestTimeParse(t *testing.T) {
+	s := "2019-01-04T02:39:49Z"
+	_, e := time.Parse("2006-01-02T15:04:05Z07:00", s)
+	if e != nil {
+		t.Fail()
+	} else {
+		t.Log("Parse Successfully.")
+	}
+
+	s = "20181214T06:16:34Z"
+	_, e = time.Parse("20060102T15:04:05Z07:00", s)
+	if e != nil {
+		t.Fail()
+	} else {
+		t.Log("Parse Successfully.")
+	}
+}
 /*
 func makeRequest(name string, args ...interface{}) *bytes.Buffer {
 	buf := new(bytes.Buffer)
